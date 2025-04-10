@@ -2,6 +2,9 @@ let btnMostrar = document.getElementById("btnMostrar");
 let encabezado1 = document.getElementById("encabezado1");
 let encabezado2 = document.getElementById("encabezado2");
 let listas = document.getElementsByTagName("ul");
+let txtRFC = document.getElementById("txtRFC");
+let txtCURP = document.getElementById("txtCURP");
+let txtTelefono = document.getElementById("txtTelefono");
 
 let elementos = document.getElementsByClassName("list-group-item");
 
@@ -40,7 +43,52 @@ btnMostrar.addEventListener("click", function(event){
     //prepend Inserta el elemento al principio de la lista
     //listas.item(0).prepend(element2);
     //prepend Inserta el elemento al final de la lista
-    listas.item(0).append(element);
+    //listas.item(0).append(element);
     //prepend Inserta el elemento despues de la lista
-    listas.item(0).after(element2);
-} );
+    //listas.item(0).after(element2);
+
+    //afterbegin Inserta el elemento al principio de la lista
+    //listas.item(1).insertAdjacentElement("afterbegin", element);
+    //beforeend Inserta el elemento al final de la lista
+    //listas.item(1).insertAdjacentElement("beforeend", element2);
+
+    listas.item(1).insertAdjacentHTML("beforebegin", `<li class="list-group-item">Before begin item</li>`);
+    
+    listas.item(1).insertAdjacentHTML("afterend", `<li class="list-group-item">After end item</li>`);
+    
+    listas.item(1).insertAdjacentHTML("afterbegin", `<li class="list-group-item">After begin item</li>`);
+    
+    listas.item(1).insertAdjacentHTML("beforeend", `<li class="list-group-item">Before end item</li>`);
+
+});//btnmostrar
+
+//Se ejecuta cuando termina de cargar todos los eventos de la pagina
+window.addEventListener("load", function(event){
+    console.log("Se termino de cargar la pagina");
+}); //load
+
+//txttoUpper
+function txtToUpper(event){
+    event.preventDefault();
+    event.target.value =event.target.value.trim().toUpperCase();
+}
+
+txtRFC.addEventListener("blur", txtToUpper); //txtRFC
+txtCURP.addEventListener("blur", txtToUpper); //txtCURP
+//blur cuando se sale del campo 
+//txtRFC.addEventListener("blur", function(event){
+  //  event.preventDefault;
+    //txtRFC.value = txtRFC.value.toUpperCase();
+    
+//});
+
+//txtCURP.addEventListener("blur", function(event){
+//    event.preventDefault();
+//    txtCURP.value = txtCURP.value.toUpperCase();
+//});
+
+txtTelefono.addEventListener("blur", function(event){
+    event.preventDefault();
+
+    txtTelefono.value = txtTelefono.value.trim().slice(0,10);
+});
